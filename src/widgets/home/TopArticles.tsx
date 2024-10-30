@@ -38,7 +38,7 @@ const TopArticles = () => {
                   />
                 </Imagew>
                 <Categories>
-                  {topArticles[0]?.categories.map((category) => (
+                  {topArticles[0]?.categories.map((category: any) => (
                     <p key={category}>{category}</p>
                   ))}
                 </Categories>
@@ -69,7 +69,7 @@ const TopArticles = () => {
                 <Desc>
                   <div>
                     <Categories>
-                      {topArticles[1]?.categories.map((category) => (
+                      {topArticles[1]?.categories.map((category: any) => (
                         <p key={category}>{category}</p>
                       ))}
                     </Categories>
@@ -100,7 +100,7 @@ const TopArticles = () => {
                 <Desc>
                   <div>
                     <Categories>
-                      {topArticles[2]?.categories.map((category) => (
+                      {topArticles[2]?.categories.map((category: any) => (
                         <p key={category}>{category}</p>
                       ))}
                     </Categories>

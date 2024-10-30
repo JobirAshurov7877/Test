@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 
 const SubServices: React.FC = () => {
   const t = useTranslations();
-  const [category] = useState<any[]>([]);
+  const [category] = useState<any>([]);
   return (
     <Container>
       <Box>
@@ -35,7 +35,7 @@ const SubServices: React.FC = () => {
         </Services>
         <SubServicesContainer>
           {category?.subServices &&
-            category.subServices.map((subService) => (
+            category.subServices.map((subService: any) => (
               <Subservices
                 key={subService.id}
                 id={`subservice-${subService.id}`}

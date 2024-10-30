@@ -62,7 +62,7 @@ const Categories: React.FC = () => {
                   }
                 >
                   {category.subServices &&
-                    category.subServices.map((subService) => (
+                    category.subServices.map((subService: any) => (
                       <SubServicesLi key={subService.id}>
                         <a
                           onClick={() => {
