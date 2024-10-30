@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+//@ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { MyColors } from "@/styles/color";
 import { GoArrowUpRight } from "react-icons/go";
