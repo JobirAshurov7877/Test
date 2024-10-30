@@ -18,6 +18,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { useTranslations } from "next-intl";
 import { MyColors } from "@/styles/color";
 import useHubSpotFormService from "./HubSpotFormService";
+import NavigationLink from "./NavigationLink";
 
 export default function Footer() {
   const t = useTranslations();
@@ -80,18 +81,44 @@ export default function Footer() {
           <Pages>
             <h6>{t("Pages")}</h6>
             <ul>
-              <li>{t("Navbar.About")}</li>
-              <li>{t("Navbar.Services")}</li>
-              <li>{t("Navbar.Blog")}</li>
-              <li>{t("Navbar.Contact")}</li>
+              <li>
+                <NavigationLink href={"/about"}>
+                  {t("Navbar.About")}
+                </NavigationLink>
+              </li>
+              <li>
+                <NavigationLink href={"/services"}>
+                  {t("Navbar.Services")}
+                </NavigationLink>
+              </li>
+              <li>
+                <NavigationLink href={"/blog"}>
+                  {t("Navbar.Blog")}
+                </NavigationLink>
+              </li>
+              <li>
+                <NavigationLink href={"/contact"}>
+                  {t("Navbar.Contact")}{" "}
+                </NavigationLink>
+              </li>
             </ul>
           </Pages>
           <UsefulLinks>
             <h6>{t("Useful links")}</h6>
             <ul>
-              <li>{t("Privacy Policy")}</li>
-              <li>{t("Terms and Conditions")}</li>
-              <li>{t("Press")}</li>
+              <li>
+                <NavigationLink href={`/privacy-policy`}>
+                  {t("Privacy Policy")}
+                </NavigationLink>
+              </li>
+              <li>
+                <NavigationLink href={`/join-the-program`}>
+                  {t("Terms and Conditions")}
+                </NavigationLink>
+              </li>
+              <li>
+                <NavigationLink href={`/press`}>{t("Press")}</NavigationLink>
+              </li>
             </ul>
           </UsefulLinks>
         </MiddleBox>

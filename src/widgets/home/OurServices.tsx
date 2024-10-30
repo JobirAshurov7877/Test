@@ -1,21 +1,38 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { MyColors } from "@/styles/color";
 import { GoArrowUpRight } from "react-icons/go";
 import { proportions } from "@/styles/proportions";
 import styled from "styled-components";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { MyButton } from "@/ui";
 import Link from "next/link";
 import Image from "next/image";
 import { imagesAPI } from "../../../env";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+import { api } from "@/services/axios";
 
 export default function OurServices() {
-  const categories: any[] = [];
+  const [categories, setCategories] = useState([]);
   const t = useTranslations();
   const splideRef = useRef<null | any>();
+  const currentLanguage = useLocale();
+
+  useEffect(() => {
+    const fetchSevices = async () => {
+      try {
+        const response = await api.get(
+          `/api/roots-with-direct-subs/${currentLanguage}`
+        );
+        setCategories(response.data);
+      } catch (error: any) {
+        console.error(error);
+      }
+    };
+    fetchSevices();
+  }, [currentLanguage]);
+console.log(categories)
   return (
     <Container>
       <Box>
@@ -52,18 +69,18 @@ export default function OurServices() {
             {categories &&
               categories.map((category) => (
                 <SplideItem key={category.id}>
-                  <Imagew>
-                    <Image src={imagesAPI + category.image} alt="" />
-                  </Imagew>
+                  {/* <Imagew>
+                    <Image src={imagesAPI + category?.image} width={100} alt="category-image" />
+                  </Imagew> */}
                   <Overlay className="overlay">
                     <OverlayBlur />
-                    <h6>{category.title}</h6>
+                    <h6>{category?.title}</h6>
                     <p className="opacity-paragraph">
-                      {category.description === "."
+                      {category?.description === "."
                         ? t(
                             "We are currently working on providing detailed information about this service. Please contact us for more information or if you have any questions."
                           )
-                        : category.description}
+                        : category?.description}
                     </p>
                     <MyButton $variant="secondary">
                       <Link href={`/services/${category.slug}`}>
