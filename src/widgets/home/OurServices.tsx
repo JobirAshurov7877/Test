@@ -1,6 +1,5 @@
 "use client";
 import { useRef } from "react";
-//@ts-ignore
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { MyColors } from "@/styles/color";
 import { GoArrowUpRight } from "react-icons/go";
@@ -16,7 +15,7 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 export default function OurServices() {
   const categories: any[] = [];
   const t = useTranslations();
-  const splideRef = useRef<Splide | null>();
+  const splideRef = useRef<null | any>();
   return (
     <Container>
       <Box>
