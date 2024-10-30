@@ -14,25 +14,26 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { api } from "@/services/axios";
 
 export default function OurServices() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setategories] = useState<any[]>([]);
   const t = useTranslations();
   const splideRef = useRef<null | any>();
   const currentLanguage = useLocale();
 
   useEffect(() => {
-    const fetchSevices = async () => {
+    const fetchHtmlFile = async () => {
       try {
         const response = await api.get(
           `/api/roots-with-direct-subs/${currentLanguage}`
         );
-        setCategories(response.data);
+
+        console.log(response.data);
       } catch (error: any) {
         console.error(error);
       }
     };
-    fetchSevices();
+    fetchHtmlFile();
   }, [currentLanguage]);
-console.log(categories)
+
   return (
     <Container>
       <Box>
@@ -69,18 +70,18 @@ console.log(categories)
             {categories &&
               categories.map((category) => (
                 <SplideItem key={category.id}>
-                  {/* <Imagew>
-                    <Image src={imagesAPI + category?.image} width={100} alt="category-image" />
-                  </Imagew> */}
+                  <Imagew>
+                    <Image src={imagesAPI + category.image} alt="" />
+                  </Imagew>
                   <Overlay className="overlay">
                     <OverlayBlur />
-                    <h6>{category?.title}</h6>
+                    <h6>{category.title}</h6>
                     <p className="opacity-paragraph">
-                      {category?.description === "."
+                      {category.description === "."
                         ? t(
                             "We are currently working on providing detailed information about this service. Please contact us for more information or if you have any questions."
                           )
-                        : category?.description}
+                        : category.description}
                     </p>
                     <MyButton $variant="secondary">
                       <Link href={`/services/${category.slug}`}>
