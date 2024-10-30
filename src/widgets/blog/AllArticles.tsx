@@ -9,10 +9,11 @@ import { useMemo, useState } from "react";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useTranslations } from "next-intl";
 import { NavigationLink } from "@/components";
+import Image from "next/image";
 
 const AllArticles = () => {
   const t = useTranslations();
-  const articles: any[] = [];
+  const articles: any = [];
   const memoizedArticles = useMemo(() => articles, [articles]);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadCategories, setLoadCategories] = useState(false);
@@ -38,17 +39,19 @@ const AllArticles = () => {
             </MiddleWare>
           ) : (
             <>
-              {memoizedArticles?.map((article) => (
+              {memoizedArticles?.map((article: any) => (
                 <Article key={article.id}>
                   <NavigationLink href={``}>
                     <div>
-                      <Image>
-                        <img src={article.image} alt={article.image_title} />
-                      </Image>
+                      <Imagew>
+                        <Image src={article.image} alt={article.image_title} />
+                      </Imagew>
                       <Categories>
-                        {article.categories.map((category, index) => (
-                          <p key={index}>{category}</p>
-                        ))}
+                        {article.categories.map(
+                          (category: any, index: number) => (
+                            <p key={index}>{category}</p>
+                          )
+                        )}
                       </Categories>
                       <Desc>
                         <h6>{article.title}</h6>
@@ -202,7 +205,7 @@ const Article = styled.div`
   }
 `;
 
-const Image = styled.div`
+const Imagew = styled.div`
   overflow: hidden;
   border-radius: 16px;
   margin-bottom: ${proportions.textMargin.tablet};
