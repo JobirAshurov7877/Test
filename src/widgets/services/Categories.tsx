@@ -11,6 +11,7 @@ const Categories: React.FC = () => {
   const [openCategories, setOpenCategories] = useState<string[]>([]);
   const [isBoxOpen, setIsBoxOpen] = useState(false);
   const [categories, setCategories] = useState<any[]>([]);
+  console.log(setCategories);
 
   const toggleCategory = (title: string) => {
     setOpenCategories((prevOpenCategories) =>

@@ -16,6 +16,7 @@ const AllArticles = () => {
   const memoizedArticles = useMemo(() => articles, [articles]);
   const [loadingMore, setLoadingMore] = useState(false);
   const [loadCategories, setLoadCategories] = useState(false);
+  console.log(setLoadingMore, setLoadCategories);
 
   const loadMoreArticles = () => {};
 

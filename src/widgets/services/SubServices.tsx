@@ -135,12 +135,6 @@ const ServiceImage = styled.div`
   }
 `;
 
-const Line = styled.div`
-  background-color: #aaaaaa;
-  height: 1px;
-  margin: 40px 0;
-`;
-
 const SubServicesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

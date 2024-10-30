@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  console.log(setIsVisible);
 
   return (
     <>

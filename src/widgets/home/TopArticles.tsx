@@ -10,10 +10,6 @@ import { useTranslations } from "next-intl";
 import { NavigationLink } from "@/components";
 import Image from "next/image";
 
-interface TopArticlesProps {
-  topArticles: BlogTopArticles[];
-}
-
 const TopArticles = () => {
   const topArticles: any[] = [];
   const t = useTranslations();

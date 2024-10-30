@@ -14,6 +14,7 @@ import Image from "next/image";
 const Header = () => {
   const t = useTranslations();
   const [latestArticle, setlatestArticle] = useState<any>({});
+  console.log(setlatestArticle);
 
   return (
     <Container>
