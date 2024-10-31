@@ -6,13 +6,28 @@ import { HiOutlineArrowUpRight } from "react-icons/hi2";
 import FormattedDate from "@/components/FormattedDate";
 import { MyColors } from "@/styles/color";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { NavigationLink } from "@/components";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { api } from "@/services/axios";
 
 const TopArticles = () => {
-  const topArticles: any[] = [];
+  const [topArticles, setTopArticles] = useState<any>([]);
   const t = useTranslations();
+  const currentLanguage = useLocale();
+
+  useEffect(() => {
+    const fetchHtmlFile = async () => {
+      try {
+        const response = await api.get(`/api/blog/${currentLanguage}`);
+        setTopArticles(response?.data.topArticles);
+      } catch (error: any) {
+        console.error(error);
+      }
+    };
+    fetchHtmlFile();
+  }, [currentLanguage]);
 
   return (
     <Container>
@@ -35,6 +50,8 @@ const TopArticles = () => {
                   <Image
                     src={topArticles[0]?.image}
                     alt={topArticles[0]?.image_title}
+                    width={300}
+                    height={300}
                   />
                 </Imagew>
                 <Categories>
@@ -64,13 +81,15 @@ const TopArticles = () => {
                   <Image
                     src={topArticles[1]?.image}
                     alt={topArticles[1]?.image_title}
+                    width={300}
+                    height={300}
                   />
                 </Imagew>
                 <Desc>
                   <div>
                     <Categories>
                       {topArticles[1]?.categories.map((category: any) => (
-                        <p key={category}>{category}</p>
+                        <p key={category}>{category} sd</p>
                       ))}
                     </Categories>
                     <div>
@@ -95,6 +114,8 @@ const TopArticles = () => {
                   <Image
                     src={topArticles[2]?.image}
                     alt={topArticles[2]?.image_title}
+                    width={300}
+                    height={300}
                   />
                 </Imagew>
                 <Desc>

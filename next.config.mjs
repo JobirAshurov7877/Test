@@ -5,6 +5,9 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ["api.varpet.com", "new.varpet.com"], // Add your allowed domains here
+  },
 };
 
 export default withNextIntl(nextConfig);

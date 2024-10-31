@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { MyColors } from "@/styles/color";
 import { GoArrowUpRight } from "react-icons/go";
 import { proportions } from "@/styles/proportions";
@@ -14,7 +13,7 @@ import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 import { api } from "@/services/axios";
 
 export default function OurServices() {
-  const [categories, setategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const t = useTranslations();
   const splideRef = useRef<null | any>();
   const currentLanguage = useLocale();
@@ -26,6 +25,7 @@ export default function OurServices() {
           `/api/roots-with-direct-subs/${currentLanguage}`
         );
 
+        setCategories(response.data);
         console.log(response.data);
       } catch (error: any) {
         console.error(error);
@@ -50,28 +50,12 @@ export default function OurServices() {
           </MyButton>
         </Desc>
         <Carousel>
-          <SplideContainer
-            options={{
-              type: "slide",
-              gap: proportions.divMargin.desktop,
-              perPage: 3,
-              arrows: false,
-              pagination: false,
-              breakpoints: {
-                1473: { perPage: 2 },
-                1150: { perPage: 1 },
-                853: { perPage: 2 },
-                800: { gap: proportions.divMargin.tablet },
-                600: { perPage: 1 },
-              },
-            }}
-            ref={splideRef}
-          >
+          <SplideContainer ref={splideRef}>
             {categories &&
               categories.map((category) => (
                 <SplideItem key={category.id}>
                   <Imagew>
-                    <Image src={imagesAPI + category.image} alt="" />
+                    <Image src={imagesAPI + category.image} fill alt="" />
                   </Imagew>
                   <Overlay className="overlay">
                     <OverlayBlur />
@@ -195,11 +179,25 @@ const Carousel = styled.div`
   }
 `;
 
-const SplideContainer = styled(Splide)``;
-const SplideItem = styled(SplideSlide)`
-  overflow: hidden;
+const SplideContainer = styled.div`
+  width: 100%;
+  overflow: auto;
   position: relative;
+  display: flex;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar-width {
+    display: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+const SplideItem = styled.div`
+  position: relative;
+  min-width: 300px;
   cursor: pointer;
+  scroll-snap-align: start;
 
   &:hover .overlay {
     top: 20%;
